@@ -1,0 +1,182 @@
+
+ =========================================================
+  LEGIONFORGE 7.3.5 - установка сервера
+ =========================================================
+
+ [*] Проверка пройдена: права администратора получены.
+
+ [*] Проверка уже извлечённых игровых данных в server\data...
+  == LEGIONFORGE: проверка DB2 (dbc) на соответствие ядру ==
+  Каталог: D:\legionforge\server\data\dbc\enUS
+  Ожидается таблиц ядром: 242; константы: BATTLE_PET_SPECIES_MAX_ID=5004, MAX_DIFFICULTY=148, TaxiMaskSize=286
+  Проверено файлов: 242; отсутствует: 0
+  [OK] dbc соответствует ядру: сигнатуры WDC1, LayoutHash совпадают, лимиты не превышены.
+[OK] Game data is ready: 20456 map tiles, all required expansion continents, Map.db2, 677 vmtree files.
+[OK] Mmaps: 3224 tiles.
+ [OK] Карты, dbc и vmaps уже подготовлены. Клиент искать не нужно.
+
+ [*] Проверка и запуск MySQL на порту 3306...
+ [OK] MySQL готов: D:\legionforge\tools\mysql\server\bin\mysql.exe
+
+ [*] Проверка MySQL...
+ [OK] MySQL работает: D:\legionforge\tools\mysql\server\bin\mysql.exe
+
+ [OK] Сохранённая учётная запись MySQL проверена.
+ [OK] Подключение к MySQL успешно.
+
+ [*] Применение патча совместимости MySQL 8.x...
+ [*] Настройка производительности MySQL...
+ [OK] MySQL настроен.
+
+ [*] Проверка программ сервера: worldserver, bnetserver, утилиты карт...
+ [OK] Программы сервера готовы.
+
+ [*] Проверка схем auth/characters в папке sql\base...
+     [OK] sql\base\auth.sql
+     [OK] sql\base\characters.sql
+ [OK] Схемы auth / characters найдены; чистый ADB будет получен только если базы пусты.
+
+ [*] Создание баз данных auth / characters / world / hotfixes...
+ [OK] Базы данных созданы.
+ [*] Создание MySQL-пользователя admin@legionforge.ru...
+ [OK] Пользователь MySQL admin@legionforge.ru настроен.
+ [*] Базовые схемы auth / characters - только в ПУСТЫЕ базы, данные игроков не затираются...
+     - импорт схемы auth.sql в пустую базу auth
+     - импорт схемы characters.sql в пустую базу characters
+ [*] Обновления схем auth / characters (без них worldserver не откроет базу персонажей)...
+      - обновления схемы auth уже применены ранее - пропуск
+      - обновления схемы characters уже применены ранее - пропуск
+ [*] Проверка схемы auth относительно ядра (колонка reg_mail и др.)...
+  [OK] Схема auth соответствует ядру (account, battlenet_accounts).
+ [OK] Базовые схемы импортированы и обновлены.
+[EMPTY] Database 'world' has no tables; safe to import.
+[EMPTY] Database 'hotfixes' has no tables; safe to import.
+
+ [*] Получение чистых world/hotfix баз ADB (только для пустых баз)...
+  [OK] Чистые базы ADB уже готовы: ADB_world.sql (349,6 МБ) и ADB_hotfixes.sql (120,5 МБ).
+
+ [*] Импорт выполняется только в пустые базы; непустые данные не затираются.
+
+ [*] Импорт ADB world-базы - около 367 МБ, обычно 5-15 минут, не закрывайте окно...
+ [OK] World-база импортирована.
+
+ [*] Импорт ADB hotfix-базы - около 126 МБ, обычно 2-8 минут...
+ [OK] Hotfix-база импортирована.
+ [*] Повторная проверка целостности после импорта...
+[OK] Database 'world' is ready: 222 tables; required data rows verified.
+[OK] Database 'hotfixes' is ready: 330 tables; required data rows verified.
+
+ [*] Применение кастомных SQL-патчей LEGIONFORGE...
+     - применение 31_remove_bots_characters.sql к базе characters
+     - применение 45_legionforge_ancient_knowledge.sql к базе world
+     - применение 46_legionforge_playerbots.sql к базе world
+     - применение 46_legionforge_playerbots.sql к базе auth
+     - применение 46_legionforge_playerbots.sql к базе characters
+     - применение 32_playerbot_auth.sql к базе auth
+     - применение 32_playerbot_names.sql к базе auth
+     - применение 32_playerbot_world.sql к базе world
+     - применение 47_legionforge_admin.sql к базе auth
+     - применение 48_legion_allied_races.sql к базе world
+     - применение 49_legion_allied_races_hotbar.sql к базе world
+     - применение 52_custom_races_31_44.sql к базе world
+     [ОШИБКА] Ошибка при применении 52_custom_races_31_44.sql, код 1
+ [ОШИБКА] Один или несколько основных SQL-патчей не применены. Смотрите D:\legionforge\setup_log.txt
+
+ [ВНИМАНИЕ] Установка прервана. Исправьте ошибку и запустите setup.bat снова.
+     Журнал: D:\legionforge\setup_log.txt
+
+Для продолжения нажмите любую клавишу . . .
+
+
+
+
+
+
+ =========================================================
+  LEGIONFORGE 7.3.5 - запуск сервера
+ =========================================================
+
+ [*] Проверка MySQL...
+ [OK] MySQL доступен: D:\legionforge\tools\mysql\server\bin\mysql.exe
+
+ [*] Проверка схем world и hotfixes...
+[OK] Database 'world' is ready: 223 tables; required data rows verified.
+[OK] Database 'hotfixes' is ready: 330 tables; required data rows verified.
+  [OK] server\logs и server\Crashes готовы (перенесено журналов: 0, отчётов о падениях: 0, удалено старых: 0)
+ [*] Проверка DB2 (dbc) на соответствие ядру...
+  == LEGIONFORGE: проверка DB2 (dbc) на соответствие ядру ==
+  Каталог: D:\legionforge\server\data\dbc\enUS
+  Ожидается таблиц ядром: 242; константы: BATTLE_PET_SPECIES_MAX_ID=5004, MAX_DIFFICULTY=148, TaxiMaskSize=286
+  Проверено файлов: 242; отсутствует: 0
+  [OK] dbc соответствует ядру: сигнатуры WDC1, LayoutHash совпадают, лимиты не превышены.
+ [OK] DB2 соответствуют ядру.
+
+ [*] Проверка библиотек worldserver и bnetserver...
+  == LEGIONFORGE: проверка библиотек сервера ==
+  Папка server: D:\legionforge\server
+  Все библиотеки уже на месте или есть в Windows.
+  Нет файла worldserver.conf - запустите setup.bat для создания конфигурации.
+  Нет файла bnetserver.conf - запустите setup.bat для создания конфигурации.
+  OK: библиотеки для запуска на месте.
+ [OK] Библиотеки на месте.
+
+ [*] Проверка и применение SQL-патчей LEGIONFORGE...
+  [*] applying 04_fix_instance_data.sql -> characters...
+  [OK] 04_fix_instance_data.sql
+  [*] applying 31_remove_bots_characters.sql -> characters...
+  [OK] 31_remove_bots_characters.sql
+  [*] applying stitch\010_scenario_return_characters.sql -> characters...
+  [OK] stitch\010_scenario_return_characters.sql
+  [*] applying 31_remove_bots_world.sql -> world...
+  [OK] 31_remove_bots_world.sql
+  [*] applying 02_custom_creatures.sql -> world...
+      1
+      1
+  [OK] 02_custom_creatures.sql
+  [*] applying 07_legion_instance_template.sql -> world...
+  [OK] 07_legion_instance_template.sql
+  [*] applying 08_all_instance_template.sql -> world...
+  [OK] 08_all_instance_template.sql
+  [*] applying 09_lfg_dungeon_entrances.sql -> world...
+  [OK] 09_lfg_dungeon_entrances.sql
+  [*] applying 10_legionforge_realm.sql -> auth...
+  [OK] 10_legionforge_realm.sql
+  [*] applying 13_warlock_starter_pet.sql -> world...
+  [OK] 13_warlock_starter_pet.sql
+  [*] applying 15_young_and_vicious.sql -> world...
+  [OK] 15_young_and_vicious.sql
+  [*] applying 18_quest_item_target.sql -> world...
+  [OK] 18_quest_item_target.sql
+  [*] applying 19_quest_generic_phase.sql -> world...
+  [OK] 19_quest_generic_phase.sql
+  [*] applying 20_imp_display.sql -> world...
+  [OK] 20_imp_display.sql
+  [*] applying 20_imp_display_characters.sql -> characters...
+  [OK] 20_imp_display_characters.sql
+  [*] applying 22_they_sent_assassins.sql -> world...
+  [OK] 22_they_sent_assassins.sql
+  [*] applying 23_kill_target_questgivers.sql -> world...
+  [OK] 23_kill_target_questgivers.sql
+  [*] applying 24_neutral_kill_targets.sql -> world...
+  [OK] 24_neutral_kill_targets.sql
+  [*] applying 25_clear_promo_mail_world.sql -> world...
+  [OK] 25_clear_promo_mail_world.sql
+  [*] applying 25_clear_promo_mail_characters.sql -> characters...
+  [OK] 25_clear_promo_mail_characters.sql
+  [*] applying 26_welcome_sender.sql -> world...
+  [OK] 26_welcome_sender.sql
+  [*] applying 27_worgen_start.sql -> world...
+  [OK] 27_worgen_start.sql
+  [*] applying 28_fel_imp_display.sql -> world...
+  [OK] 28_fel_imp_display.sql
+  [*] applying 48_legion_allied_races.sql -> world...
+  [OK] 48_legion_allied_races.sql
+  [*] applying 49_legion_allied_races_hotbar.sql -> world...
+  [OK] 49_legion_allied_races_hotbar.sql
+  [*] applying 52_custom_races_31_44.sql -> world...
+      ERROR 1054 (42S22) at line 115: Unknown column 'createMode' in 'field list'
+  [!] FAIL 52_custom_races_31_44.sql (mysql exit 1)
+  [!] 1 SQL patch(es) failed
+ [ОШИБКА] SQL-патчер завершился с ошибкой. Подробности показаны выше.
+     Сервер не будет запущен до исправления базы.
+Для продолжения нажмите любую клавишу . . .
